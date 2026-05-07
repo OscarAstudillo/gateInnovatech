@@ -8,9 +8,13 @@ spring:
         - id: recursos-service
           uri: https://modulorecursoinnovatech.onrender.com/
           predicates:
-            - Path=/api/v1/usuarios/** 
+            - Path=/api/v1/usuarios/**
           filters:
             - AuthenticationFilter
+        - id: health-check
+          uri: https://modulorecursoinnovatech.onrender.com/
+          predicates:
+            - Path=/api/v1/health/**
 
 # Monitoreo para Dockerr
 management:
