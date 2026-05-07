@@ -4,6 +4,18 @@ server:
 spring:
   cloud:
     gateway:
+      # Configuración de CORS para permitir la conexión con el Frontend (Vite)
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "http://localhost:5173"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - OPTIONS
+            allowedHeaders: "*"
       routes:
         - id: recursos-service
           uri: https://modulorecursoinnovatech.onrender.com/
@@ -16,7 +28,7 @@ spring:
           predicates:
             - Path=/api/v1/health/**
 
-# Monitoreo para Dockerr
+# Monitoreo para Docker
 management:
   endpoints:
     web:
