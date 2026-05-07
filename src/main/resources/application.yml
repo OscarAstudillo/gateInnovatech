@@ -2,15 +2,15 @@ server:
   port: 8080
 
 spring:
-  application:
-    name: api-gateway
   cloud:
     gateway:
       routes:
         - id: recursos-service
           uri: https://modulorecursoinnovatech.onrender.com/
           predicates:
-            - Path=/cargos/**, /categorias/**, /usuarios/**
+            - Path=/api/v1/usuarios/** 
+          filters:
+            - AuthenticationFilter
 
 # Monitoreo para Docker
 management:
