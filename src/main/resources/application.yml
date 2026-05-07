@@ -12,7 +12,7 @@ spring:
           predicates:
             - Path=/cargos/**, /categorias/**, /usuarios/**
 
-# Monitoreo para Docker
+# Monitoreo para Dockerr
 management:
   endpoints:
     web:
