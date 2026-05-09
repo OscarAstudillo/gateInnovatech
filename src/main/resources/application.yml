@@ -1,6 +1,7 @@
 server:
   port: 8080
-
+# Aca manejamos hacia donde conecta nuestra ApiGateway 
+# Y el AuthenticationFilter es para la autenticacion de firebase
 spring:
   cloud:
     gateway:
