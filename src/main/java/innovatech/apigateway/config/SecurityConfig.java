@@ -26,17 +26,18 @@ public class SecurityConfig {
             )
             .build();
     }
-
-    // 2. El código de tu compañero, adaptado para WebFlux
+    //Configuracion del CORS que habilita el consumo de nuestro microservicio en el frontend
+    //
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
         
-        // CORRECCIÓN: Se eliminó la "/" al final de localhost:5173 para que coincida exactamente con el navegador
+        //Se elimino la "/" al final de localhost:5173 para que coincida exactamente con el navegador
+        //Aca al subir el frontend a vercel agregar el URL para que permita interactuar con el API
         config.setAllowedOrigins(Arrays.asList("http://localhost:5173", "http://localhost:3000")); 
         config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         
-        // Excelentes cabeceras: Permitimos el Token de Firebase y datos en JSON
+        //Permitimos el Token de Firebase y datos en JSON
         config.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type", "X-User-UID"));
         config.setAllowCredentials(true);
 

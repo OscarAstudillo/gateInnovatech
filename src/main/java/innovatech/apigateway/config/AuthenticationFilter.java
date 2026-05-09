@@ -18,7 +18,8 @@ public class AuthenticationFilter extends AbstractGatewayFilterFactory<Authentic
     }
 
     public static class Config { }
-
+    //En este metodo apply basicamente manejamos lo que pasa si el token esta 
+    // valido o no valido, basicamente un guardia.
     @Override
     public GatewayFilter apply(Config config) {
         return (exchange, chain) -> {
@@ -29,7 +30,8 @@ public class AuthenticationFilter extends AbstractGatewayFilterFactory<Authentic
             }
 
             String token = authHeader.substring(7);
-
+            // Aca manejamos la autenticidad del token en firebase
+            // si es autentico nos devuelve el UID
             try {
                 // Validación con Firebase
                 FirebaseToken decodedToken = FirebaseAuth.getInstance().verifyIdToken(token);

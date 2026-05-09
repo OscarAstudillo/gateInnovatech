@@ -14,6 +14,7 @@ import java.util.Base64;
 public class FirebaseConfig {
 
     // Esta variable leerá el valor de la sección "Environment"
+    // Agregar .env con el codigo alfanumerico para probar el funcionamiento
     @Value("${FIREBASE_CONFIG_BASE64}")
     private String firebaseConfigBase64;
 
@@ -29,7 +30,7 @@ public class FirebaseConfig {
         FirebaseOptions options = FirebaseOptions.builder()
                 .setCredentials(GoogleCredentials.fromStream(new ByteArrayInputStream(decodedBytes)))
                 .build();
-
+        //Un log para guiarnos si firebase inicio perfectamente
         if (FirebaseApp.getApps().isEmpty()) {
             FirebaseApp.initializeApp(options);
             System.out.println("Firebase inicializado exitosamente desde el entorno.");
