@@ -5,6 +5,8 @@ server:
 spring:
   cloud:
     gateway:
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials, RETAIN_FIRST
       routes:
         - id: recursos-service
           uri: https://modulorecursoinnovatech.onrender.com/
