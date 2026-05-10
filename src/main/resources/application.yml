@@ -1,0 +1,25 @@
+server:
+  port: 8080
+# Aca manejamos hacia donde conecta nuestra ApiGateway 
+# Y el AuthenticationFilter es para la autenticacion de firebase
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: recursos-service
+          uri: https://modulorecursoinnovatech.onrender.com/
+          predicates:
+            - Path=/api/v1/usuarios/**, /api/v1/categorias/**, /api/v1/cargos/**
+          filters:
+            - AuthenticationFilter
+        - id: health-check
+          uri: https://modulorecursoinnovatech.onrender.com/
+          predicates:
+            - Path=/api/v1/health/**
+
+# Monitoreo para Dockerr
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info
