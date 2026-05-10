@@ -5,14 +5,7 @@ server:
 spring:
   cloud:
     gateway:
-      default-filters:
-        - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials, RETAIN_FIRST
       routes:
-        - id: login-route
-          uri: https://modulorecursoinnovatech.onrender.com/
-          predicates:
-            # Aquí ponemos la ruta EXACTA de tu @PostMapping
-            - Path=/api/v1/usuarios
         - id: recursos-service
           uri: https://modulorecursoinnovatech.onrender.com/
           predicates:
