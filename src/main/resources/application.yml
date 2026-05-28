@@ -23,7 +23,15 @@ spring:
           predicates:
             - Path=/api/v1/proyectos/**, /api/v1/tareas/**
           filters:
-            - AuthenticationFilter 
+            - AuthenticationFilter
+
+        # 3. Microservicio de Métricas
+        - id: metricas-service
+          uri: https://modulometricasinnovatech.onrender.com/ 
+          predicates:
+            - Path=/api/v1/metricas-historicas/**
+          filters:
+            - AuthenticationFilter     
 
 # Monitoreo interno para Docker y Render
 management:
