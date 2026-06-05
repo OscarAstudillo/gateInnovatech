@@ -27,7 +27,7 @@ spring:
 
         # 3. Microservicio de Métricas
         - id: metricas-service
-          uri: https://metricasnode.onrender.com/ 
+          uri: https://metricasnode.onrender.com 
           predicates:
             - Path=/api/v1/metricas-historicas/**
           filters:
