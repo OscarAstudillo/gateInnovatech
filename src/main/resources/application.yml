@@ -21,7 +21,7 @@ spring:
         - id: proyectos-service
           uri: https://modulogestionproyecto.onrender.com/
           predicates:
-            - Path=/api/v1/proyectos/**, /api/v1/tareas/**
+            - Path=/api/v1/proyectos/**, /api/v1/tareas/**, /api/v1/asignaciones-tareas/**, /api/v1/registro-horas/**, /api/v1/informes/**
           filters:
             - AuthenticationFilter
 
