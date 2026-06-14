@@ -1,23 +1,39 @@
 server:
   port: 8080
-# Aca manejamos hacia donde conecta nuestra ApiGateway 
-# Y el AuthenticationFilter es para la autenticacion de firebase
+
 spring:
   cloud:
     gateway:
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials, RETAIN_FIRST
+        - AddRequestHeader=X-Gateway-Secret, ${GATEWAY_SECRET}
+        
       routes:
+        # 1. Microservicio de Recursos
         - id: recursos-service
           uri: https://modulorecursoinnovatech.onrender.com/
           predicates:
             - Path=/api/v1/usuarios/**, /api/v1/categorias/**, /api/v1/cargos/**
           filters:
             - AuthenticationFilter
-        - id: health-check
-          uri: https://modulorecursoinnovatech.onrender.com/
+            
+        # 2. Microservicio de Proyectos
+        - id: proyectos-service
+          uri: https://modulogestionproyecto.onrender.com/
           predicates:
-            - Path=/api/v1/health/**
+            - Path=/api/v1/proyectos/**, /api/v1/tareas/**, /api/v1/asignaciones-tareas/**, /api/v1/registro-horas/**, /api/v1/informes/**
+          filters:
+            - AuthenticationFilter
 
-# Monitoreo para Dockerr
+        # 3. Microservicio de Métricas
+        - id: metricas-service
+          uri: https://metricasnode.onrender.com/ 
+          predicates:
+            - Path=/api/v1/metricas-historicas/**
+          filters:
+            - AuthenticationFilter     
+
+# Monitoreo interno para Docker y Render
 management:
   endpoints:
     web:

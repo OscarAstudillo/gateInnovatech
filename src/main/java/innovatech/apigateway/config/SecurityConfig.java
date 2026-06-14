@@ -35,7 +35,7 @@ public class SecurityConfig {
         //Se elimino la "/" al final de localhost:5173 para que coincida exactamente con el navegador
         //Aca al subir el frontend a vercel agregar el URL para que permita interactuar con el API
         config.setAllowedOrigins(Arrays.asList("http://localhost:5173", "http://localhost:3000", "https://innovatech-front-end.vercel.app","https://innovatechfrontend.onrender.com")); 
-        config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+        config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "PATCH","DELETE","OPTIONS"));
         
         //Permitimos el Token de Firebase y datos en JSON
         config.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type", "X-User-UID"));
